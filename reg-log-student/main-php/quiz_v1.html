@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TestHub Quiz</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: auto; /* Ensures scrolling works */
+      }
+
+      .quiz-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .question {
+        margin-bottom: 10px;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .next-btn {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .submit-btn {
+        background-color: #28a745;
+        color: white;
+      }
+
+      /* Compiler iframe styling */
+      .iframe-container {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 800px;
+        height: 500px;
+        display: none;
+        background: white;
+        border: 2px solid #ccc;
+        z-index: 1000;
+        border-radius: 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .iframe-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: red;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h2>TestHub Quiz</h2>
+      <div class="question">
+        <p>1. What is the capital of France?</p>
+        <input type="radio" name="q1" value="Paris" /> Paris<br />
+        <input type="radio" name="q1" value="London" /> London<br />
+        <input type="radio" name="q1" value="Berlin" /> Berlin
+      </div>
+
+      <div class="question">
+        <p>2. Which language is used for web development?</p>
+        <input type="radio" name="q2" value="JavaScript" /> JavaScript<br />
+        <input type="radio" name="q2" value="Python" /> Python<br />
+        <input type="radio" name="q2" value="C++" /> C++
+      </div>
+
+      <div class="btn-container">
+        <a href="./feedback.html">
+          <button class="submit-btn" onclick="submitQuiz()">Submit</button>
+        </a>
+      </div>
+
+      <br />
+      <button onclick="openCompiler()">Open Code Compiler</button>
+    </div>
+
+    <!-- Compiler Iframe -->
+    <div class="iframe-container" id="compilerFrame">
+      <button class="close-btn" onclick="closeCompiler()">X</button>
+      <iframe
+        src="https://www.jdoodle.com/online-compiler"
+        id="compiler"
+      ></iframe>
+    </div>
+
+    <script>
+      function openCompiler() {
+        document.getElementById('compilerFrame').style.display = 'block';
+      }
+
+      function closeCompiler() {
+        document.getElementById('compilerFrame').style.display = 'none';
+      }
+
+      function enterFullscreen() {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+
+      function submitQuiz() {
+        alert('Quiz submitted!');
+        exitFullscreen();
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        enterFullscreen();
+      });
+    </script>
+  </body>
+</html>

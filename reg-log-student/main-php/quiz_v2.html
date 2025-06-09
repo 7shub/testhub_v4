@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TestHub Quiz</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .quiz-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+      }
+
+      .btn-container {
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .submit-btn {
+        background-color: #28a745;
+        color: white;
+      }
+
+      /* Popup Styles */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <h2>TestHub Quiz</h2>
+      <p class="timer">Time left: <span id="timer">60</span> seconds</p>
+
+      <div class="question">
+        <p>1. What is the capital of France?</p>
+        <input type="radio" name="q1" value="Paris" /> Paris<br />
+        <input type="radio" name="q1" value="London" /> London<br />
+        <input type="radio" name="q1" value="Berlin" /> Berlin
+      </div>
+
+      <div class="question">
+        <p>2. Which language is used for web development?</p>
+        <input type="radio" name="q2" value="JavaScript" /> JavaScript<br />
+        <input type="radio" name="q2" value="Python" /> Python<br />
+        <input type="radio" name="q2" value="C++" /> C++
+      </div>
+
+      <div class="btn-container">
+        <button class="submit-btn" onclick="submitQuiz()">Submit</button>
+      </div>
+      <br />
+      <button onclick="openCompiler()">Open Code Compiler</button>
+    </div>
+
+    <!-- Popup Message -->
+    <div class="popup" id="popup">
+      <h3>Time's Up! ⏳</h3>
+      <p>Your quiz has been submitted automatically.</p>
+    </div>
+    <!-- Compiler Iframe -->
+    <div class="iframe-container" id="compilerFrame">
+      <button class="close-btn" onclick="closeCompiler()">X</button>
+      <iframe
+        src="https://www.jdoodle.com/online-compiler"
+        id="compiler"
+      ></iframe>
+    </div>
+
+    <script>
+      function openCompiler() {
+        document.getElementById('compilerFrame').style.display = 'block';
+      }
+
+      function closeCompiler() {
+        document.getElementById('compilerFrame').style.display = 'none';
+      }
+
+      let timeLeft = 60;
+      let quizSubmitted = false; // Prevent multiple submissions
+
+      function startTimer() {
+        const timerElement = document.getElementById('timer');
+        const countdown = setInterval(() => {
+          if (timeLeft <= 0) {
+            clearInterval(countdown);
+            if (!quizSubmitted) submitQuiz(true); // Submit only if not already submitted
+          } else {
+            timerElement.textContent = timeLeft;
+            timeLeft--;
+          }
+        }, 1000);
+      }
+
+      function enterFullscreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+
+      function submitQuiz(isAutoSubmit = false) {
+        if (quizSubmitted) return; // Prevent multiple submissions
+
+        quizSubmitted = true;
+        document.getElementById('popup').style.display = 'block';
+
+        // Change popup message if auto-submitted
+        if (isAutoSubmit) {
+          document.querySelector('#popup h3').textContent = "Time's Up! ⏳";
+          document.querySelector('#popup p').textContent =
+            'Your quiz has been submitted automatically.';
+        } else {
+          document.querySelector('#popup h3').textContent = 'Quiz Submitted ✅';
+          document.querySelector('#popup p').textContent =
+            'Your answers have been recorded.';
+        }
+
+        exitFullscreen();
+
+        // Redirect to feedback page after 2 seconds
+        setTimeout(() => {
+          window.location.href = './feedback.html';
+        }, 2000);
+      }
+
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          enterFullscreen();
+          startTimer();
+        }, 500);
+      });
+    </script>
+  </body>
+</html>

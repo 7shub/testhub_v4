@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testhub | Login & Register</title>
+    <!-- BOXICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css"
+    />
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Form Container -->
+    <div class="form-container">
+      <div class="col col-1">
+        <div class="image-layer">
+          <img
+            src="assets/img/white-outline.png"
+            alt="Login Image"
+            class="form-image-main"
+          />
+          <img
+            src="assets/img/dots.png"
+            alt="Login Image"
+            class="form-image dots"
+          />
+          <img
+            src="assets/img/coin.png"
+            alt="Login Image"
+            class="form-image coin"
+          />
+          <img
+            src="assets/img/spring.png"
+            alt="Login Image"
+            class="form-image spring"
+          />
+          <img
+            src="assets/img/rocket.png"
+            alt="Login Image"
+            class="form-image rocket"
+          />
+          <img
+            src="assets/img/cloud.png"
+            alt="Login Image"
+            class="form-image cloud"
+          />
+          <img
+            src="assets/img/stars.png"
+            alt="Login Image"
+            class="form-image stars"
+          />
+        </div>
+        <p class="featured-words">
+          You Are Few Minutes Away From Boosting Your Skills With
+          <span>Testhub</span>
+        </p>
+      </div>
+
+      <div class="col col-2">
+        <div class="btn-box">
+          <button class="btn btn-1" id="login">Sign In</button>
+          <button class="btn btn-2" id="register">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form action="./php/testhub-auth.php" method="POST" class="login-form">
+          <div class="form-title">
+            <span>Sign In</span>
+          </div>
+          <div class="form-inputs">
+            <div class="input-box">
+              <input
+                type="text"
+                class="input-field"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <i class="bx bx-user icon"></i>
+            </div>
+            <div class="input-box">
+              <input
+                type="password"
+                class="input-field"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <i class="bx bx-lock-alt icon"></i>
+            </div>
+            <div class="forgot-pass">
+              <a href="#">Forgot Password?</a>
+            </div>
+            <div class="input-box">
+              <button type="submit" class="input-submit" name="login">
+                <span>Sign In</span>
+                <i class="bx bx-right-arrow-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div class="social-login">
+            <i class="bx bxl-google"></i>
+            <i class="bx bxl-facebook"></i>
+            <i class="bx bxl-twitter"></i>
+            <i class="bx bxl-github"></i>
+          </div>
+        </form>
+
+        <!-- Register Form -->
+        <form
+          action="./php/testhub-auth.php"
+          method="POST"
+          class="register-form"
+        >
+          <div class="form-title">
+            <span>Create Account</span>
+          </div>
+          <div class="form-inputs">
+            <div class="input-box">
+              <input
+                type="text"
+                class="input-field"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <i class="bx bx-user icon"></i>
+            </div>
+            <div class="input-group">
+              <div class="input-box half-width">
+                <input
+                  type="text"
+                  class="input-field"
+                  name="roll_no"
+                  placeholder="Roll No"
+                  required
+                />
+                <i class="bx bx-id-card icon"></i>
+              </div>
+              <div class="input-box half-width">
+                <select class="input-field" name="semester" required>
+                  <option value="" disabled selected>Semester</option>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6">Semester 6</option>
+                  <option value="7">Semester 7</option>
+                  <option value="8">Semester 8</option>
+                </select>
+                <i class="bx bx-book icon"></i>
+              </div>
+            </div>
+            <div class="input-box">
+              <input
+                type="email"
+                class="input-field"
+                name="email"
+                placeholder="Email"
+                required
+              />
+              <i class="bx bx-envelope icon"></i>
+            </div>
+            <div class="input-box">
+              <input
+                type="password"
+                class="input-field"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <i class="bx bx-lock-alt icon"></i>
+            </div>
+            <div class="input-box">
+              <button type="submit" class="input-submit" name="register">
+                <span>Sign Up</span>
+                <i class="bx bx-right-arrow-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div class="social-login">
+            <i class="bx bxl-google"></i>
+            <i class="bx bxl-facebook"></i>
+            <i class="bx bxl-twitter"></i>
+            <i class="bx bxl-github"></i>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
